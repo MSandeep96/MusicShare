@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lob.musicshare">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name=".MusicShare"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/SplashTheme">
+        <activity android:name=".activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.RegisterActivity"/>
+        <activity
+            android:name=".activity.ContentActivity"
+            android:configChanges="orientation|screenSize"/>
+        <activity
+            android:name=".activity.IntroductionActivity"/>
+        <activity
+            android:name=".activity.OtherUserProfileActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity"/>
+        <activity
+            android:name=".activity.ImageActivity"
+            android:label="@string/title_activity_image"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <activity android:name=".activity.SettingsActivity"
+            android:theme="@style/SettingsTheme"/>
+
+        <receiver
+            android:name=".receiver.MusicBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.music.metachanged" />
+                <action android:name="com.android.music.playstatechanged" />
+                <action android:name="com.android.music.playbackcomplete" />
+                <action android:name="com.android.music.queuechanged" />
+                <action android:name="com.htc.music.metachanged" />
+                <action android:name="fm.last.android.metachanged" />
+                <action android:name="com.sec.android.app.music.metachanged" />
+                <action android:name="com.nullsoft.winamp.metachanged" />
+                <action android:name="com.amazon.mp3.metachanged" />
+                <action android:name="com.miui.player.metachanged" />
+                <action android:name="com.real.IMP.metachanged" />
+                <action android:name="com.sonyericsson.music.metachanged" />
+                <action android:name="com.rdio.android.metachanged" />
+                <action android:name="com.samsung.sec.android.MusicPlayer.metachanged" />
+                <action android:name="com.andrew.apollo.metachanged" />
+                <action android:name="com.spotify.mobile.android.metadatachanged" />
+                <action android:name="com.spotify.music.metadatachanged" />
+
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.NotificationReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.BootCompletedReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

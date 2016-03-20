@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lob.musicshare.util.ui.RoundedCornerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_toast_rounded_layout"
+    android:orientation="vertical"
+    android:layout_marginTop="18dp"
+    android:clickable="true"
+    android:elevation="26dp"
+    android:background="@color/md_white"
+    android:layout_width="125dp"
+    android:layout_height="50dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_action_navigation_arrow_back"
+        android:paddingLeft="18dp"
+        android:id="@+id/back_arrow"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/darkText"
+        android:textSize="16dp"
+        android:paddingRight="18dp"
+        android:gravity="center"
+        android:text="@string/back"
+        android:layout_toRightOf="@+id/back_arrow"
+        android:layout_toEndOf="@+id/back_arrow"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true" />
+
+</com.lob.musicshare.util.ui.RoundedCornerLayout>

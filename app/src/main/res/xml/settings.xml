@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/pref_notifications">
+        <ListPreference
+            android:key="@string/notification_check_frequency"
+            android:entries="@array/notification_check_frequency_entries"
+            android:entryValues="@array/notification_check_frequency_values"
+            android:title="@string/pref_notification_check_frequency_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_miscellaneous"
+        android:key="@string/pref_miscellaneous">
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/use_spotify"
+            android:summary="@string/pref_use_spotify_summary"
+            android:title="@string/pref_use_spotify_title" >
+        </SwitchPreference>
+    </PreferenceCategory>
+</PreferenceScreen>

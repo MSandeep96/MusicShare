@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <string-array name="notification_check_frequency_entries">
+        <item name="0">Every 2 hours</item>
+        <item name="1">Every 6 hours</item>
+        <item name="2">Every day</item>
+        <item name="3">Never</item>
+    </string-array>
+    <string-array name="notification_check_frequency_values">
+        <item name="0">7200000</item>
+        <item name="1">21600000</item>
+        <item name="2">86400000</item>
+        <item name="3">0</item>
+    </string-array>
+</resources>
