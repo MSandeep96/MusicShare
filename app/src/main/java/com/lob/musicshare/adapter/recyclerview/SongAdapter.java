@@ -12,17 +12,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.anthonycr.grant.PermissionsManager;
 import com.lob.musicshare.R;
 import com.lob.musicshare.query.Query;
 import com.lob.musicshare.util.ParseValues;
 import com.lob.musicshare.util.PreferencesUtils;
 import com.lob.musicshare.util.SpotifyUtils;
 import com.lob.musicshare.util.picasso.CircleTransform;
+import com.lob.musicshare.util.web.ServerConnectionUtils;
 import com.lob.musicshare.youtube.YouTubeVideo;
 import com.squareup.picasso.Picasso;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.jar.Manifest;
+
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
 
@@ -77,33 +87,36 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
                 try {
                     trackTextView.setText(songParts[1]);
 
+                    final String search = ParseValues.getParsedSongName(getTrackAt(position))
+                            .replace(ParseValues.BY, "")
+                            .replace(ParseValues.TWO_DASHES, "")
+                            .replace(ParseValues.OPEN_PARENTHESIS, "")
+                            .replace(ParseValues.CLOSED_PARENTHESIS, "")
+                            .replace(ParseValues.OTHER_APOSTROPHE, "")
+                            .replace("&", "")
+                            .replace("__opar", "")
+                            .replace("__cpar", "")
+                            .replace("AlbumVersion", "")
+                            .replace("album version", "")
+                            .replace("__dot__", "")
+                            .replace("[", "")
+                            .replace("]", "")
+                            .replace("-", "")
+                            .replace(ParseValues.COMMA, "")
+                            .replace(ParseValues.ONE_BLANK_SPACE, "")
+                            .replace(ParseValues.APOSTROPHE, "")
+                            .replace("c" + ParseValues.APOSTROPHE, "c'")
+                            .replaceAll("^[^a-zA-Z0-9\\s]+|[^a-zA-Z0-9\\s]+$", "");
+
                     Query.getInstance(activity, Query.QueryType.YOUTUBE_SEARCH)
-                            .setYouTubeSearch(ParseValues.getParsedSongName(getTrackAt(position))
-                                    .replace(ParseValues.BY, "")
-                                    .replace(ParseValues.TWO_DASHES, "")
-                                    .replace(ParseValues.OPEN_PARENTHESIS, "")
-                                    .replace(ParseValues.CLOSED_PARENTHESIS, "")
-                                    .replace(ParseValues.OTHER_APOSTROPHE, "")
-                                    .replace("__opar", "")
-                                    .replace("__cpar", "")
-                                    .replace("AlbumVersion", "")
-                                    .replace("album version", "")
-                                    .replace("__dot__", "")
-                                    .replace("[", "")
-                                    .replace("]", "")
-                                    .replace("-", "")
-                                    .replace(ParseValues.COMMA, "")
-                                    .replace(ParseValues.ONE_BLANK_SPACE, "")
-                                    .replace(ParseValues.APOSTROPHE, "")
-                                    .replace("c" + ParseValues.APOSTROPHE, "c'")
-                                    .replaceAll("^[^a-zA-Z0-9\\s]+|[^a-zA-Z0-9\\s]+$", ""))
+                            .setYoutubeSearch(search)
                             .setShowDialog(false)
                             .setOnResultListener(new Query.OnResultListener() {
                                 @Override
-                                public void onResult(String id) {
-                                    if (id != null && !id.equals("")) {
-                                        final YouTubeVideo youTubeVideo = new YouTubeVideo(id);
+                                public void onResult(String result) {
 
+                                    if (result != null && !result.equals("")) {
+                                        final YouTubeVideo youTubeVideo = new YouTubeVideo(result);
                                         Picasso.with(activity)
                                                 .load(youTubeVideo.thumbnailUrl)
                                                 .transform(new CircleTransform())

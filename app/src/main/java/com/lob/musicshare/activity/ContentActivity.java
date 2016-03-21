@@ -11,6 +11,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -28,6 +29,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -352,9 +355,12 @@ public class ContentActivity extends AppCompatActivity {
         }
     }
 
+    private View getFragmentRootView() {
+        return viewPagerAdapter.getItem(fragmentIndex).getView();
+    }
+
     private void loadNewPeople(String inputText) {
-        final Fragment currentFragment = viewPagerAdapter.getItem(fragmentIndex);
-        final View fragmentRootView = currentFragment.getView();
+        final View fragmentRootView = getFragmentRootView();
 
         if (fragmentRootView != null) {
             final RecyclerView recyclerView = (RecyclerView) fragmentRootView.findViewById(R.id.recycler_view);
@@ -405,8 +411,8 @@ public class ContentActivity extends AppCompatActivity {
                                                         customToastClicked = true;
                                                         getSupportFragmentManager()
                                                                 .beginTransaction()
-                                                                .detach(currentFragment)
-                                                                .attach(currentFragment)
+                                                                .detach(viewPagerAdapter.getItem(fragmentIndex))
+                                                                .attach(viewPagerAdapter.getItem(fragmentIndex))
                                                                 .commit();
                                                     }
                                                 });

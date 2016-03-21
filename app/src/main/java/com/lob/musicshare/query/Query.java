@@ -20,7 +20,12 @@ public class Query {
 
     private OnResultListener onResultListener;
 
-    private String artist, genre, myEmail, personToFind, hisEmail, youTubeQuery;
+    private String artist;
+    private String genre;
+    private String myEmail;
+    private String personToFind;
+    private String hisEmail;
+    private String youtubeSearch;
 
     private boolean visibleDialog;
 
@@ -51,6 +56,21 @@ public class Query {
 
     public Query setOnResultListener(OnResultListener onResultListener) {
         this.onResultListener = onResultListener;
+        return this;
+    }
+
+    public Query setYoutubeSearch(String youtubeSearch) {
+        this.youtubeSearch = youtubeSearch;
+        return this;
+    }
+
+    public Query setShowDialog(boolean visibleDialog) {
+        this.visibleDialog = visibleDialog;
+        return this;
+    }
+
+    public Query setHisEmail(String hisEmail) {
+        this.hisEmail = hisEmail;
         return this;
     }
 
@@ -183,28 +203,14 @@ public class Query {
                         + "&email=" + myEmail).execute("");
                 break;
             case YOUTUBE_SEARCH:
-                if (youTubeQuery == null) {
-                    throw new NullPointerException("Query is null");
+                if (youtubeSearch == null) {
+                    throw new NullPointerException("YoutubeSearch is null");
                 }
 
                 new Search(Constants.YOUTUBE_SEARCH
-                        + "?query=" + youTubeQuery).execute("");
+                        + "?q=" + youtubeSearch);
+                break;
         }
-    }
-
-    public Query setYouTubeSearch(String query) {
-        this.youTubeQuery = query;
-        return this;
-    }
-
-    public Query setShowDialog(boolean visibleDialog) {
-        this.visibleDialog = visibleDialog;
-        return this;
-    }
-
-    public Query setHisEmail(String hisEmail) {
-        this.hisEmail = hisEmail;
-        return this;
     }
 
     public enum QueryType {

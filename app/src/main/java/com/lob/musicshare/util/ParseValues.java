@@ -41,6 +41,7 @@ public class ParseValues {
                 .replace(",", COMMA)
                 .replace("'", APOSTROPHE)
                 .replace(".", DOT)
+                .replace("&", "")
                 .replaceAll("^[^a-zA-Z0-9\\s]+|[^a-zA-Z0-9\\s]+$", "");
     }
 
@@ -49,6 +50,7 @@ public class ParseValues {
                 .replace(",", "__and__")
                 .replace("'", APOSTROPHE)
                 .replace(".", DOT)
+                .replace("&", "")
                 .replaceAll("^[^a-zA-Z0-9\\s]+|[^a-zA-Z0-9\\s]+$", "");
     }
 
@@ -70,6 +72,7 @@ public class ParseValues {
                 .replace(")", CLOSED_PARENTHESIS)
                 .replace(".", DOT)
                 .replace(" , ", "")
+                .replace("&", "")
                 .replace("-------", "-----")
                 .replace("----", "__and__--")
                 .replaceAll("^[^a-zA-Z0-9\\s]+|[^a-zA-Z0-9\\s]+$", "");

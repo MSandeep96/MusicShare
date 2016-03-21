@@ -37,7 +37,7 @@
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/no_one_following"
+            android:src="@drawable/what_emoji"
             android:id="@+id/no_image_view"
             android:layout_marginTop="146dp"
             android:layout_alignParentTop="true"

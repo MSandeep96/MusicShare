@@ -10,8 +10,9 @@
         android:layout_height="150dp"
         android:id="@+id/no_songs_image_view"
         android:src="@drawable/no_video"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="143dp" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -6,15 +6,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.lob.musicshare.R;
+import com.lob.musicshare.util.ui.AlphaAnimationUtils;
 
 public class ArtistsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_artists, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_artists, container, false);
+
+        final ImageView emoji = (ImageView) rootView.findViewById(R.id.no_image_view);
+        emoji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlphaAnimationUtils.alphaSetResource(true, emoji, R.drawable.confused_emoji_colored);
+            }
+        });
+        return rootView;
     }
 
     @Override

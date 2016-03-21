@@ -28,6 +28,7 @@ import com.lob.musicshare.util.Constants;
 import com.lob.musicshare.util.ParseValues;
 import com.lob.musicshare.util.PreferencesUtils;
 import com.lob.musicshare.util.web.InternetUtils;
+import com.lob.musicshare.util.web.LoginHandler;
 import com.lob.musicshare.util.web.ServerConnectionUtils;
 
 import dmax.dialog.SpotsDialog;
@@ -123,13 +124,13 @@ public class LoginActivity extends AppCompatActivity implements FingerprintDialo
 
     @Override
     public void onFingerprintDialogAuthenticated() {
-        new LoginHandler(previousEmail, previousPassword).execute("");
+        new LoginHandler(LoginActivity.this, previousEmail, previousPassword).execute("");
     }
 
     @Override
     public void onFingerprintDialogVerifyPassword(FingerprintDialog fingerprintDialog, String string) {
         if (string.equals(previousPassword)) {
-            new LoginHandler(previousEmail, previousPassword).execute("");
+            new LoginHandler(LoginActivity.this, previousEmail, previousPassword).execute("");
         } else {
             Toast.makeText(getApplicationContext(), R.string.wrong_password, Toast.LENGTH_LONG).show();
             fingerprintDialog.dismiss();
@@ -159,75 +160,13 @@ public class LoginActivity extends AppCompatActivity implements FingerprintDialo
                 return;
             }
 
-            new LoginHandler(email, password).execute("");
+            new LoginHandler(LoginActivity.this, email, password).execute("");
         } else if (!previousEmail.equals("") && !previousPassword.equals("")) {
             boolean useFingerprint = FingerprintManagerCompat.from(getApplicationContext()).hasEnrolledFingerprints();
             if (useFingerprint) {
                 FingerprintDialog.show(this, getString(R.string.app_name), 69);
             } else {
-                new LoginHandler(previousEmail, previousPassword).execute("");
-            }
-        }
-
-    }
-
-    private void saveName() {
-        Query.getInstance(LoginActivity.this, Query.QueryType.GET_USER_INFO)
-                .setShowDialog(false)
-                .setHisEmail(ParseValues.getParsedEmail(PreferencesUtils.getEmail(getApplicationContext())))
-                .setOnResultListener(new Query.OnResultListener() {
-                    @Override
-                    public void onResult(String result) {
-                        PreferencesUtils.setName(LoginActivity.this.getApplicationContext(),
-                                ParseJson.generateUsers(result).get(0).userName);
-                    }
-                }).startQuery();
-    }
-
-    private class LoginHandler extends AsyncTask<String, Void, String> {
-
-        private final String password, email;
-
-        private String result;
-
-        private AlertDialog progressDialog;
-
-        LoginHandler(String email, String password) {
-            this.email = email;
-            this.password = password;
-
-            progressDialog = new SpotsDialog(LoginActivity.this);
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-
-            progressDialog.setCancelable(false);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                String url = Constants.LOGIN_URL
-                        + "?email=" + email.replace(".", "__dot__").replace("@", "__at__")
-                        + "&pwd=" + password.replace(".", "__dot__").replace("@", "__at__");
-                result = ServerConnectionUtils.getContent(url);
-            } catch (Exception e) {
-                result = "error: unknown error";
-            }
-            return "";
-        }
-
-        @Override
-        protected void onPostExecute(String string) {
-            progressDialog.dismiss();
-            if (result.equals(Constants.RESULT_SUCCESS)) {
-                PreferencesUtils.setSuccessfulLogIn(getApplicationContext(), email, password);
-
-                saveName();
-
-                Intent contentActivity = new Intent(getApplicationContext(), ContentActivity.class);
-                startActivity(contentActivity);
-            } else {
-                Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_LONG).show();
+                new LoginHandler(LoginActivity.this, previousEmail, previousPassword).execute("");
             }
         }
 

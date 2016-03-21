@@ -8,8 +8,8 @@ android {
         applicationId "com.lob.musicshare"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
         multiDexEnabled true
 
     }
@@ -42,5 +42,6 @@ dependencies {
     compile 'com.github.gabrielemariotti.recyclerview:recyclerview-animators:0.3.0-SNAPSHOT@aar'
     compile 'com.github.paolorotolo:appintro:3.4.0'
     compile 'com.commit451:PhotoView:1.2.4'
+    compile 'org.jsoup:jsoup:1.7.2'
     compile 'ch.acra:acra:4.8.2'
 }

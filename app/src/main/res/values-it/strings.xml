@@ -36,20 +36,20 @@
     <string name="removed">Rimosso</string>
     <string name="search">Cerca</string>
     <string name="songs">Canzoni</string>
-    <string name="start_following">\n Cerca nuove persone \n premendo la lente in alto</string>
-    <string name="start_with_artists">\n Cerca nuove persone \n in base all\'artista</string>
-    <string name="start_with_genre">\n Cerca nuove persone \n in base al genere</string>
+    <string name="start_following">Inizia a cercare\nnuove persone</string>
+    <string name="start_with_artists">Cerca nuove persone\nin base all\'artista</string>
+    <string name="start_with_genre">Cerca nuove persone\nin base al genere</string>
     <string name="success">Fatto!</string>
     <string name="surname">Cognome</string>
     <string name="this_app_requires_internet">Questa app richiede una connessione dati per funzionare correttamente</string>
-    <string name="uploading_image">Eseguendo l\'upload dell\'imagine...</string>
+    <string name="uploading_image">Eseguendo l\'upload dell\'immagine...</string>
     <string name="uploading_profile_picture">Eseguendo l\'upload dell\'immagine</string>
     <string name="video_not_available">Video non disponibile</string>
     <string name="wait_please">Attendi, per favore</string>
     <string name="warning">Attenzione</string>
     <string name="wrong_password">Password errata</string>
     <string name="mail_already_exists">L\'email è già presente nel database</string>
-    <string name="dismiss">Annulla</string>
+    <string name="undo">Annulla</string>
     <string name="error_loading">Errore</string>
     <string name="no_songs">Non hai ancora ascoltato la musica</string>
     <string name="you_removed">Hai rimosso</string>
@@ -87,4 +87,10 @@
     <string name="pref_use_spotify_summary">Usa Spotify per ascoltare le caznoni che selezioni. Se disabiliti questa impostazione, verrà aperto YouTube</string>
     <string name="pref_use_spotify_title">Cerca le canzoni su Spotify</string>
     <string name="settings">Impostazioni</string>
+    <string name="feedback_title">Feedback</string>
+    <string name="feedback_summary">Invia una E-Mail allo sviluppatore</string>
+    <string name="other">Altro</string>
+    <string name="send_email">Invia E-Mail...</string>
+    <string name="email_body">Inserisci il messaggio qui :)</string>
+    <string name="email_subject">Music Share</string>
 </resources>

@@ -19,4 +19,12 @@
             android:title="@string/pref_use_spotify_title" >
         </SwitchPreference>
     </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/other">
+        <Preference
+            android:key="@string/feedback_key"
+            android:title="@string/feedback_title"
+            android:summary="@string/feedback_summary">
+        </Preference>
+    </PreferenceCategory>
 </PreferenceScreen>

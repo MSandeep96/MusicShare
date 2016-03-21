@@ -118,7 +118,7 @@ public class ProfileFragment extends Fragment {
     private void showSnackBar(String message, int duration, View.OnClickListener onClick, final String whatToReplace) {
         final Snackbar snackbar = Snackbar.make(getView(), message, Snackbar.LENGTH_INDEFINITE).setActionTextColor(Color.WHITE);
 
-        snackbar.setAction(R.string.dismiss, onClick);
+        snackbar.setAction(R.string.undo, onClick);
         snackbar.show();
 
         Handler handler = new Handler();

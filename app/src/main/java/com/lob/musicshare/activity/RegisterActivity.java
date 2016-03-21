@@ -21,14 +21,17 @@ import android.widget.Toast;
 
 import com.anthonycr.grant.PermissionsManager;
 import com.anthonycr.grant.PermissionsResultAction;
+
 import com.lob.musicshare.R;
 import com.lob.musicshare.util.AndroidOverViewUtils;
 import com.lob.musicshare.util.Constants;
 import com.lob.musicshare.util.ParseValues;
 import com.lob.musicshare.util.PhotoSelectUtils;
 import com.lob.musicshare.util.PreferencesUtils;
+import com.lob.musicshare.util.web.LoginHandler;
 import com.lob.musicshare.util.web.ServerConnectionUtils;
 import com.lob.musicshare.util.web.UploadProfilePicture;
+
 import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
@@ -261,6 +264,13 @@ public class RegisterActivity extends AppCompatActivity {
             progressDialog.dismiss();
             if (result.equals(Constants.RESULT_SUCCESS)) {
                 showToast(getString(R.string.success));
+
+                RegisterActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        new LoginHandler(RegisterActivity.this, email, password).execute("");
+                    }
+                });
             } else if (result.contains(Constants.RESULT_ERROR)) {
                 showToast(getString(R.string.error) + ":" + " " + result);
             } else {
